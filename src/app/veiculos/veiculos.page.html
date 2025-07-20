@@ -1,0 +1,47 @@
+<ion-header [translucent]="true">
+    <ion-toolbar>
+        <ion-title>
+            {{ this.pageName }}
+        </ion-title>
+    </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+    <ion-header collapse="condense">
+        <ion-toolbar>
+            <ion-title size="large">{{ pageName }}</ion-title>
+        </ion-toolbar>
+    </ion-header>
+
+    <ion-list>
+        <ion-list-header>
+            Lista de veículos
+        </ion-list-header>
+        @for(veiculo of veiculos; track veiculo.id) {
+            <ion-item>
+                <ion-text>
+                    <h2>{{ veiculo.placa }}</h2>
+                    <h3>{{ veiculo.marca?.nome }} - {{ veiculo.modelo }}</h3>
+
+                </ion-text>
+                <ion-button size="small" [routerLink]="['edit', veiculo.id]" slot="end">
+                    <ion-icon name="create" slot="start"></ion-icon>
+                    Editar
+                </ion-button>
+            </ion-item>
+
+        }
+
+        @if(!this.veiculos) {
+            <div id="container">
+                <strong>Nenhum veículo cadastrado</strong>
+            </div>
+        }
+    </ion-list>
+
+    <ion-fab vertical="bottom" horizontal="end" slot="fixed">
+        <ion-fab-button [routerLink]="['new']">
+            <ion-icon name="add"></ion-icon>
+        </ion-fab-button>
+    </ion-fab>
+</ion-content>

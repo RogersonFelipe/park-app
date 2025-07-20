@@ -1,0 +1,25 @@
+<ion-header>
+    <ion-toolbar>
+        <ion-title>Selecionar Vaga Ocupada</ion-title>
+        <ion-buttons slot="end">
+            <ion-button (click)="dismiss()">Fechar</ion-button>
+        </ion-buttons>
+    </ion-toolbar>
+</ion-header>
+<ion-content>
+    <ion-list>
+        @for(vagaOcupada of this.vagasOcupadas; track $index) {
+            <ion-item (click)="selecionar(vagaOcupada)">
+                <ion-label>
+                    Vaga: {{ vagaOcupada.vaga.codigo }}<br>
+                    Veículo: {{ vagaOcupada.veiculo.placa }} <br>
+                    Hora Entrada: {{ vagaOcupada.horaInicio | date:'dd/MM HH:mm' }} <br>
+                    Total a pagar: R$ {{ calculaTotal(vagaOcupada)}}
+                </ion-label>
+                <ion-button fill="clear" color="danger" slot="end" (click)="this.finalizarVaga(vagaOcupada)">
+                    <ion-icon name="close"></ion-icon>
+                </ion-button>
+            </ion-item>
+        }
+    </ion-list>
+</ion-content>

@@ -1,0 +1,38 @@
+<ion-header [translucent]="true">
+    <ion-toolbar>
+        <ion-title>
+            {{ this.pageName }}
+        </ion-title>
+    </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+    <ion-header collapse="condense">
+        <ion-toolbar>
+            <ion-title size="large">{{ this.pageName }}</ion-title>
+        </ion-toolbar>
+    </ion-header>
+
+    <ion-list>
+        <ion-list-header>
+            Lista de vagas
+        </ion-list-header>
+        @for(vaga of this.vagas; track vaga.id) {
+            <ion-item>
+                <ion-text>
+                    <h2>{{ vaga.codigo }} | Vaga coberta: {{ (vaga.coberta) ? 'Sim' : 'Não' }}</h2>
+                </ion-text>
+                <ion-button size="small" [routerLink]="['edit', vaga.id]" slot="end">
+                    <ion-icon name="create" slot="start"></ion-icon>
+                    Editar
+                </ion-button>
+            </ion-item>
+        }
+    </ion-list>
+
+    <ion-fab vertical="bottom" horizontal="end" slot="fixed">
+        <ion-fab-button [routerLink]="['new']">
+            <ion-icon name="add"></ion-icon>
+        </ion-fab-button>
+    </ion-fab>
+</ion-content>

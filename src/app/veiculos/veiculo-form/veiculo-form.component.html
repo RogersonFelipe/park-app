@@ -1,0 +1,59 @@
+<ion-header [translucent]="true">
+    <ion-toolbar>
+        <ion-title>Cadastrando veículo</ion-title>
+    </ion-toolbar>
+</ion-header>
+
+<ion-content>
+    <form [formGroup]="this.veiculoForm" (ngSubmit)="onSubmit()">
+        <ion-list>
+            <ion-item>
+                <ion-label position="floating">Placa</ion-label>
+                <ion-input formControlName="placa" maxlength="7"></ion-input>
+            </ion-item>
+
+            <ion-item>
+                <ion-label position="floating">Modelo</ion-label>
+                <ion-input formControlName="modelo"></ion-input>
+            </ion-item>
+            <ion-item>
+                <ion-select formControlName="marca" placeholder="Selecione a marca" [compareWith]="compareById">
+                    <ion-select-option *ngFor="let marca of marcas" [value]="marca">
+                        {{ marca.nome }}
+                    </ion-select-option>
+                </ion-select>
+            </ion-item>
+            
+            <ion-item>
+                <ion-select formControlName="tipo" placeholder="Selecione o tipo" [compareWith]="compareById">
+                    <ion-select-option *ngFor="let tipo of tipos" [value]="tipo">
+                        {{ tipo.nome }}
+                    </ion-select-option>
+                </ion-select>
+            </ion-item>
+
+            <ion-item>
+                <ion-label position="floating">Cor</ion-label>
+                <ion-input formControlName="cor"></ion-input>
+            </ion-item>
+
+            <ion-item>
+                <ion-label position="floating">Nome do Proprietário</ion-label>
+                <ion-input formControlName="nomeProprietario"></ion-input>
+            </ion-item>
+
+            <ion-item>
+                <ion-label position="floating">Contato</ion-label>
+                <ion-input formControlName="contatoProprietario" maxlength="15" (ionInput)="formatarTelefone($event)">
+                </ion-input>
+            </ion-item>
+
+            <ion-button expand="full" type="submit" [disabled]="!veiculoForm.valid">Salvar</ion-button>
+
+            @if(!!this.veiculoId) {
+                <ion-button expand="full" color="danger" (click)="this.remove()">Excluir</ion-button>
+            }
+        </ion-list>
+
+    </form>
+</ion-content>

@@ -1,0 +1,45 @@
+<ion-header [translucent]="true">
+    <ion-buttons slot="start">
+        <ion-back-button defaultHref="/tabs/vagas"></ion-back-button>
+    </ion-buttons>  
+    <ion-toolbar>
+        <ion-title>
+            {{ !!this.vagaId ? 'Editando vaga' : 'Cadastrando vaga' }}
+        </ion-title>
+    </ion-toolbar>
+</ion-header>
+
+<ion-content>
+    <form [formGroup]="this.vagaForm" (ngSubmit)="onSubmit()">
+        <ion-list>
+            <ion-item>
+                <ion-label position="fixed">Código da Vaga</ion-label>
+                <ion-input formControlName="codigo"></ion-input>
+            </ion-item>
+
+            <ion-item>
+                <ion-label position="fixed">Coberta</ion-label>
+                <ion-toggle formControlName="coberta"></ion-toggle>
+            </ion-item>
+
+            <ion-item>
+                <ion-label position="fixed">Ativa</ion-label>
+                <ion-toggle formControlName="isAtiva"></ion-toggle>
+            </ion-item>
+
+            <ion-item>
+                <ion-label position="fixed">Comporta Camionete</ion-label>
+                <ion-toggle formControlName="comportaCamionete"></ion-toggle>
+            </ion-item>
+
+            <ion-item>
+                <ion-label position="fixed">Resevada</ion-label>
+                <ion-toggle formControlName="reservada"></ion-toggle>
+            </ion-item>
+
+            <ion-button expand="full" type="submit" [disabled]="!vagaForm.valid">Salvar</ion-button>
+            <ion-button *ngIf="vagaId" expand="full" (click)="remove()" color="danger">
+                Excluir
+            </ion-button>
+        </ion-list>
+    </form>

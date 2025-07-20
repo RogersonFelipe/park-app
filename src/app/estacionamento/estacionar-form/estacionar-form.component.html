@@ -1,0 +1,51 @@
+<ion-header>
+    <ion-toolbar>
+        <ion-buttons slot="start">
+            <ion-back-button defaultHref="/"></ion-back-button>
+        </ion-buttons>
+        <ion-title>Estacionando Veículo</ion-title>
+    </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+    <form [formGroup]="this.estacionarForm" (ngSubmit)="onSubmit()">
+        <ion-item>
+            <ion-select formControlName="veiculo" placeholder="Selecione o veículo">
+                <ion-select-option *ngFor="let veiculo of veiculosDisponiveis" [value]="veiculo">
+                    {{ veiculo.placa }} - {{ veiculo.modelo }}
+                </ion-select-option>
+            </ion-select>
+        </ion-item>
+
+        <ion-item>
+            <ion-select formControlName="vaga" placeholder="Selecione a vaga">
+                <ion-select-option *ngFor="let vaga of vagas" [value]="vaga">
+                    {{ vaga.codigo }}
+                </ion-select-option>
+            </ion-select>
+        </ion-item>
+
+        <ion-item>
+            <ion-label stacked>Data Inicio</ion-label>
+            <ion-datetime id="horaInicio" formControlName="horaInicio" presentation="date-time"
+                display-format="dd/MM/yyyy HH:mm" hour-cycle="h23" minute-values="0,15,30,45" >
+            </ion-datetime>
+        </ion-item>
+
+        <ion-item>
+            <ion-label position="stacked">Preço por hora</ion-label>
+            <ion-input formControlName="precoHora" type="number" inputmode="decimal" min="0" step="0.01" placeholder="0,00">
+            </ion-input>
+        </ion-item>
+
+        <ion-item>
+            <ion-label position="stacked">Preço fixo</ion-label>
+            <ion-input formControlName="precoFixo" type="number" inputmode="decimal" min="0" step="0.01" placeholder="0,00">
+            </ion-input>
+        </ion-item>
+
+        
+
+        <ion-button expand="full" type="submit">Salvar</ion-button>
+    </form>
+</ion-content>

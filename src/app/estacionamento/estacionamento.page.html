@@ -1,0 +1,35 @@
+<ion-header [translucent]="true">
+    <ion-toolbar>
+        <ion-title> {{this.pageTitle}} </ion-title>
+        <ion-buttons slot="end">
+            <ion-button (click)="atualizarVagas()">
+                <ion-icon slot="icon-only" name="refresh" size="small"></ion-icon>
+            </ion-button>
+        </ion-buttons>
+    </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+    <ion-header collapse="condense">
+        <ion-toolbar>
+            <ion-title size="large">{{this.pageTitle}}</ion-title>
+        </ion-toolbar>
+    </ion-header>
+
+    <ion-list>
+        <ion-list-header>
+            Vagas Ocupadas
+        </ion-list-header>
+        @for(vagaOcupada of this.vagasOcupadas; track $index) {
+            <ion-item>
+                <h2>{{vagaOcupada.vaga.codigo}} - {{vagaOcupada.veiculo.placa}}</h2>
+            </ion-item>
+        }
+
+    </ion-list>
+    <!-- @if(!this.vagasOcupadas) {
+        <div id="container">
+            <strong>Nenhuma vaga ocupada</strong>
+        </div>
+    } -->
+</ion-content>
